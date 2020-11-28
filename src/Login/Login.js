@@ -1,6 +1,6 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
-import { auth } from "../firebase";
+import { auth, provider } from "../firebase";
 import "./Login.css";
 
 function Login() {
@@ -15,6 +15,10 @@ function Login() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .catch((err) => console.log(err.message));
+  };
+
+  const signInGoogle = () => {
+    auth.signInWithPopup(provider).catch((err) => console.log(err.message));
   };
 
   return (
@@ -58,7 +62,9 @@ function Login() {
             Sign up
           </Button>
           <hr />
-          <Button className="login__google">Sign IN with google</Button>
+          <Button onClick={signInGoogle} className="login__google">
+            Sign IN with google
+          </Button>
         </form>
       </div>
     </div>
