@@ -1,8 +1,19 @@
 import { Loyalty } from "@material-ui/icons";
-import React from "react";
+import React, { useEffect } from "react";
 import "./Nav.css";
+import { auth } from "../../firebase";
 
 function Nav() {
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        document.querySelector(".nav").classList.add("scrolling");
+      } else {
+        document.querySelector(".nav").classList.remove("scrolling");
+      }
+    });
+  }, []);
+
   return (
     <div className="nav">
       <div className="nav__content">
@@ -14,11 +25,15 @@ function Nav() {
           />
         </div>
         <div className="nav__right">
-          <Loyalty />
+          <div className="nav__list">
+            <Loyalty />
+            <p>0</p>
+          </div>
           <img
             src="https://i.pinimg.com/originals/fb/8e/8a/fb8e8a96fca2f049334f312086a6e2f6.png"
             alt=""
             className="nav__avatar"
+            onClick={() => auth.signOut()}
           />
         </div>
       </div>

@@ -1,0 +1,50 @@
+.nav{
+    position: fixed;
+    top: 0;
+    background-color: transparent;
+    width: 100vw;
+    transition: 0.5s ease-in-out;
+}
+
+.scrolling{
+    background-color: black;
+}
+
+.nav__content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.nav__logo{
+    width: 200px;
+}
+
+.nav__avatar{
+    width: 60px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.nav__right{
+    display: flex;
+    align-items: center;
+}
+
+.nav__list{
+    display: flex;
+    align-items: center;
+}
+
+.nav__list p{
+    font-size: 30px;
+    color: white;
+}
+
+.nav__list .MuiSvgIcon-root{
+    font-size: 40px;
+    color : rgb(76, 76, 248);
+    margin-right: 5px;
+    cursor: pointer;
+}
