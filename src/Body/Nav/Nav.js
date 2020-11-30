@@ -1,21 +1,22 @@
 import { Loyalty } from "@material-ui/icons";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Nav.css";
 import { auth } from "../../firebase";
 
 function Nav() {
+  const [scrolling, setScrolling] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
-        document.querySelector(".nav").classList.add("scrolling");
+      if (window.scrollY > 0) {
+        setScrolling(true);
       } else {
-        document.querySelector(".nav").classList.remove("scrolling");
+        setScrolling(false);
       }
     });
   }, []);
 
   return (
-    <div className="nav">
+    <div className={`nav ${scrolling && "scrolling"}`}>
       <div className="nav__content">
         <div className="nav__left">
           <img
