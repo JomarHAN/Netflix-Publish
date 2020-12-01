@@ -1,3 +1,47 @@
 .banner{
-    /* margin-top: 100px; */
+    display: flex;
+    height: 800px;
+    justify-content: center;
+    position: relative;
+
+}
+
+.banner__fadeLeft,
+.banner__fadeRight
+{
+    width: 15%;
+    height: 100%;
+    flex: 0.06;
+    position: absolute;
+    z-index: 2;
+}
+
+.banner__fadeTop,
+.banner__fadeBottom
+{
+    width: 100%;
+    height: 15%;
+    flex: 0.06;
+    position: absolute;
+    z-index: 2;
+}
+
+.banner__fadeLeft{
+    background-image: linear-gradient(to right, black, transparent);
+    left: 0;
+}
+
+.banner__fadeRight{
+    right: 0;
+    background-image: linear-gradient(to left, black, transparent);
+}
+
+.banner__fadeTop{
+    top: 0;
+    background-image: linear-gradient(to bottom, black, transparent);
+}
+
+.banner__fadeBottom{
+    bottom: 0;
+    background-image: linear-gradient(to top, black, transparent);
 }
