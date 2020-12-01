@@ -1,25 +1,74 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Banner.css";
 import SlideItem from "./SlideItem/SlideItem";
+import axios from "../../dataMovie/axios";
+import fetchMovie from "../../dataMovie/request";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBanners, setBanners } from "../../features/bannersSlice";
 
 function Banner() {
-  const filmSlide = {
-    name: "Hello World",
-    overview:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem error ratione sequi pariatur ex maxime, nihil necessitatibus odio, quam praesentium eaque ducimus adipisci exercitationem assumenda magni dolorem! Nam, blanditiis tempora.",
-    backdrop:
-      "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dddb8beb-7509-4c66-bc59-5e64fc25d614/d86kr7w-48890806-3bbd-4495-9e35-b3e729b7ddd5.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZGRkYjhiZWItNzUwOS00YzY2LWJjNTktNWU2NGZjMjVkNjE0XC9kODZrcjd3LTQ4ODkwODA2LTNiYmQtNDQ5NS05ZTM1LWIzZTcyOWI3ZGRkNS5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.Lm0WPenYKq8B8cHEcpm-mHxi8vIdPky00MBqJiMr7Sc",
-    rating: 6.5,
-  };
+  const dispatch = useDispatch();
+  const banners = useSelector(selectBanners);
+
+  useEffect(() => {
+    const fetch = () => {
+      axios.get(fetchMovie.action).then((res) => {
+        if (res) {
+          dispatch(setBanners(res.data.results));
+        }
+      });
+    };
+    fetch();
+  }, []);
+
+  useEffect(() => {
+    if (banners) {
+      const autoSlide = () => {
+        const li = document.querySelectorAll(".banner__slides ul li");
+        li[1].classList.add("view");
+        setInterval(() => {
+          var currentIndex = 0;
+          var currentSlide = document.querySelector(
+            ".banner__slides ul li.view"
+          );
+          for (
+            currentIndex = 0;
+            (currentSlide = currentSlide.previousElementSibling);
+            currentIndex++
+          ) {}
+          for (var i = 0; i < li.length; i++) {
+            li[i].classList.remove("view");
+          }
+          if (currentIndex < banners.length - 1) {
+            li[currentIndex].nextElementSibling.classList.add("view");
+          } else {
+            li[0].classList.add("view");
+          }
+        }, 10000);
+      };
+
+      autoSlide();
+    }
+  }, [banners]);
+
   return (
     <div className="banner">
       <div className="banner__fadeLeft"></div>
-      <SlideItem
-        name={filmSlide.name}
-        overview={filmSlide.overview}
-        backdrop={filmSlide.backdrop}
-        rating={filmSlide.rating}
-      />
+      <div className="banner__slides">
+        <ul>
+          {banners?.map((banner) => (
+            <li key={banner.id}>
+              <SlideItem
+                id={banner.id}
+                title={banner.title}
+                overview={banner.overview}
+                vote={banner.vote_average}
+                backdrop={banner.backdrop_path}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className="banner__fadeTop"></div>
       <div className="banner__fadeBottom"></div>
       <div className="banner__fadeRight"></div>

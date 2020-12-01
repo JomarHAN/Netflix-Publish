@@ -45,3 +45,46 @@
     bottom: 0;
     background-image: linear-gradient(to top, black, transparent);
 }
+
+.banner__slides{
+    width: 100vw;
+}
+
+.banner__slides ul{
+    height: 100%;
+    padding: 0;
+    position: relative;
+}
+
+.banner__slides ul li{
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: 1s;
+    list-style: none;
+    animation: moveOut 1s forwards;
+}
+
+@keyframes moveOut{
+    from{
+        transform: translateX(0)
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.banner__slides ul li.view{
+    opacity: 1;
+    animation: moveIn 1s forwards;
+}
+
+@keyframes moveIn {
+    from {
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}

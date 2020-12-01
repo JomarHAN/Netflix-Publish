@@ -2,14 +2,16 @@ import { Favorite, PlayArrow } from "@material-ui/icons";
 import React from "react";
 import "./SlideItem.css";
 
-function SlideItem({ name, overview, backdrop, rating }) {
+const img_url = "https://image.tmdb.org/t/p/original";
+
+function SlideItem({ title, overview, backdrop, vote, id }) {
   return (
     <div className="slideItem">
-      <img src={backdrop} alt="" className="slideItem__backdrop" />
+      <img src={img_url + backdrop} alt="" className="slideItem__backdrop" />
       <div className="slideItem__content">
-        <h2 className="slideItem__title">{name}</h2>
+        <h2 className="slideItem__title">{title}</h2>
         <p>
-          Rating: <strong>{rating}</strong>
+          Rating: <strong>{vote}</strong>
         </p>
         <div className="slideItem__buttons">
           <div className="slideItem__btnPlay">
