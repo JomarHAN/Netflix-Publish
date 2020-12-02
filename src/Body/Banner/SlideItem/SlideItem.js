@@ -1,10 +1,22 @@
 import { Favorite, PlayArrow } from "@material-ui/icons";
 import React from "react";
 import "./SlideItem.css";
+import Youtube from "react-youtube";
+import movieTrailer from "movie-trailer";
 
 const img_url = "https://image.tmdb.org/t/p/original";
 
 function SlideItem({ title, overview, backdrop, vote, id }) {
+  const handlePlay = (e) => {
+    const movieName = e.target.id;
+    // console.log(movieName);
+    movieTrailer(movieName).then((res) => {
+      const urlParams = new URLSearchParams(new URL(res).search);
+      const keyID = urlParams.get("v");
+      console.log(keyID);
+    });
+  };
+
   return (
     <div className="slideItem">
       <img src={img_url + backdrop} alt="" className="slideItem__backdrop" />
@@ -15,7 +27,7 @@ function SlideItem({ title, overview, backdrop, vote, id }) {
         </p>
         <div className="slideItem__buttons">
           <div className="slideItem__btnPlay">
-            <PlayArrow />
+            <PlayArrow id={title} onClick={handlePlay} />
           </div>
           <div className="slideItem__btnAdd">
             <Favorite />

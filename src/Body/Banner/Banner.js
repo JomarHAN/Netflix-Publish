@@ -60,7 +60,7 @@ function Banner() {
             <li key={banner.id}>
               <SlideItem
                 id={banner.id}
-                title={banner.title}
+                title={banner?.original_title || banner?.original_name}
                 overview={banner.overview}
                 vote={banner.vote_average}
                 backdrop={banner.backdrop_path}
