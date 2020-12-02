@@ -8,7 +8,7 @@ export const bannersSlice = createSlice({
   reducers: {
     setBanners: (state, action) => {
       state.banners = action.payload.slice(0, 4);
-    }
+    },
   },
 });
 

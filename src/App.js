@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./App.css";
-import Body from "./Body/Body";
-import { login, logout, selectUser } from "./features/userSlice";
+import Home from "./Home/Home";
+import { login, logout } from "./features/userSlice";
 import { auth } from "./firebase";
 import Login from "./Login/Login";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Nav from "./Home/Nav/Nav";
+import Favourite from "./Favourite/Favourite";
 
 function App() {
-  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch(
           login({
@@ -25,9 +27,30 @@ function App() {
         dispatch(logout());
       }
     });
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
-  return <div className="app">{user ? <Body /> : <Login />}</div>;
+  return (
+    <Router>
+      <div className="app">
+        <Switch>
+          <Route path="/favourite">
+            <Nav />
+            <Favourite />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/">
+            <Nav />
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

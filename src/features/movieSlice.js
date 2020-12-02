@@ -17,3 +17,5 @@ export const { setMovie } = movieSlice.actions;
 export const selectMovie = state => state.movie.movie;
 
 export default movieSlice.reducer;
+
+

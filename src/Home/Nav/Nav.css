@@ -35,6 +35,7 @@
 
 .nav__list{
     display: flex;
+    text-decoration: none;
     align-items: center;
 }
 
@@ -45,7 +46,18 @@
 
 .nav__list .MuiSvgIcon-root{
     font-size: 40px;
-    color : rgb(76, 76, 248);
+    color : rgb(182, 29, 18);
     margin-right: 5px;
     cursor: pointer;
+}
+
+.nav__rightBtn{
+    color: white!important;
+    background-color: green!important;
+    font-weight: 800!important;
+    padding: 10px 20px!important;
+}
+
+.nav__right a{
+    text-decoration-line: none!important;
 }

@@ -5,10 +5,13 @@ import axios from "../../dataMovie/axios";
 import fetchMovie from "../../dataMovie/request";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBanners, setBanners } from "../../features/bannersSlice";
+import { useHistory } from "react-router-dom";
+import { selectPath } from "../../features/pathSlice";
 
 function Banner() {
   const dispatch = useDispatch();
   const banners = useSelector(selectBanners);
+  const path = useSelector(selectPath);
 
   useEffect(() => {
     const fetch = () => {
@@ -19,6 +22,7 @@ function Banner() {
       });
     };
     fetch();
+    console.log(window.location.pathname);
   }, []);
 
   useEffect(() => {

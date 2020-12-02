@@ -1,24 +1,50 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { setPath } from "../features/pathSlice";
 import { auth, provider } from "../firebase";
 import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const signIn = () => {
-    auth.signInWithEmailAndPassword(email, password);
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        history.push("/");
+      })
+      .then(() => {
+        dispatch(setPath(true));
+      });
   };
 
   const signUp = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        history.push("/");
+      })
+      .then(() => {
+        dispatch(setPath(true));
+      })
       .catch((err) => console.log(err.message));
   };
 
   const signInGoogle = () => {
-    auth.signInWithPopup(provider).catch((err) => console.log(err.message));
+    auth
+      .signInWithPopup(provider)
+      .then(() => {
+        history.push("/");
+      })
+      .then(() => {
+        dispatch(setPath(true));
+      })
+      .catch((err) => console.log(err.message));
   };
 
   return (
@@ -37,7 +63,6 @@ function Login() {
         />
       </div>
       <div className="login__form">
-        <h2>Sign In</h2>
         <form className="login__input">
           <TextField
             className="login__textField"
