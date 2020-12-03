@@ -60,10 +60,10 @@
     height: 100%;
     position: absolute;
     width: 100%;
-    opacity: 0;
+    /* opacity: 0; */
     transition: 1s;
     list-style: none;
-    animation: moveOut 1s forwards;
+    /* animation: moveOut 1s forwards; */
 }
 
 @keyframes moveOut{
@@ -87,4 +87,14 @@
     to{
         transform: translateX(0);
     }
+}
+
+.carousel-root,
+.carousel-slider,
+.slider-wrapper{
+    height: 100%;
+}
+
+.control-dots{
+    height: 0!important;
 }

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { Button } from "@material-ui/core";
 import { setPath } from "../../features/pathSlice";
+import { setBanners } from "../../features/bannersSlice";
 
 function Nav() {
   const [scrolling, setScrolling] = useState(false);
@@ -26,11 +27,13 @@ function Nav() {
   const changePath = () => {
     dispatch(setPath(false));
   };
-
+  const backHome = () => {
+    dispatch(setPath(true));
+  };
   return (
     <div className={`nav ${scrolling && "scrolling"}`}>
       <div className="nav__content">
-        <Link to="/" className="nav__left">
+        <Link to="/" className="nav__left" onClick={backHome}>
           <img
             src="https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
             alt=""
