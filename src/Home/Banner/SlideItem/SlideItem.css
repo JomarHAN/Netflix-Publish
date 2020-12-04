@@ -19,6 +19,7 @@
     left: 15%;
     color: whitesmoke;
     width: 500px;
+    text-align: left;
 }
 
 .slideItem__content p{

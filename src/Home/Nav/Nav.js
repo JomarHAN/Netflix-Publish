@@ -1,13 +1,11 @@
-import { Loyalty } from "@material-ui/icons";
+import { MovieFilter } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import "./Nav.css";
 import { auth } from "../../firebase";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { Button } from "@material-ui/core";
-import { setPath } from "../../features/pathSlice";
-import { setBanners } from "../../features/bannersSlice";
 
 function Nav() {
   const [scrolling, setScrolling] = useState(false);
@@ -16,7 +14,7 @@ function Nav() {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 300) {
         setScrolling(true);
       } else {
         setScrolling(false);
@@ -24,16 +22,11 @@ function Nav() {
     });
   }, []);
 
-  const changePath = () => {
-    dispatch(setPath(false));
-  };
-  const backHome = () => {
-    dispatch(setPath(true));
-  };
+
   return (
     <div className={`nav ${scrolling && "scrolling"}`}>
       <div className="nav__content">
-        <Link to="/" className="nav__left" onClick={backHome}>
+        <Link to="/" className="nav__left" >
           <img
             src="https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
             alt=""
@@ -43,8 +36,8 @@ function Nav() {
         <div className="nav__right">
           {user ? (
             <>
-              <Link className="nav__list" to="/favourite" onClick={changePath}>
-                <Loyalty />
+              <Link className="nav__list" to="/favourite">
+                <MovieFilter />
                 <p>0</p>
               </Link>
               <img
@@ -55,12 +48,12 @@ function Nav() {
               />
             </>
           ) : (
-            <Link to="/login">
-              <Button className="nav__rightBtn" onClick={changePath}>
-                log in
+              <Link to="/login">
+                <Button className="nav__rightBtn" >
+                  log in
               </Button>
-            </Link>
-          )}
+              </Link>
+            )}
         </div>
       </div>
     </div>

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Banner.css";
 import SlideItem from "./SlideItem/SlideItem";
 import axios from "../../dataMovie/axios";
 import fetchMovie from "../../dataMovie/request";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBanners, setBanners } from "../../features/bannersSlice";
-import { selectPath } from "../../features/pathSlice";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -15,7 +14,7 @@ function Banner() {
 
   useEffect(() => {
     const fetch = () => {
-      axios.get(fetchMovie.action).then((res) => {
+      axios.get(fetchMovie.banner).then((res) => {
         if (res) {
           dispatch(setBanners(res.data.results));
         }
@@ -28,9 +27,10 @@ function Banner() {
     <div className="banner">
       <div className="banner__fadeLeft"></div>
       <div className="banner__slides">
-        <Carousel autoPlay infiniteLoop>
+        <Carousel autoPlay infiniteLoop showThumbs={false} interval={5000}>
           {banners?.map((banner) => (
             <SlideItem
+              key={banner.id}
               id={banner.id}
               title={banner?.original_title || banner?.original_name}
               overview={banner.overview}

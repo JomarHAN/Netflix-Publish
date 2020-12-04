@@ -1,0 +1,9 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home__child{
+    max-width: 1200px;
+}

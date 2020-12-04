@@ -39,12 +39,12 @@
     align-items: center;
 }
 
-.nav__list p{
+.nav__right p{
     font-size: 30px;
     color: white;
 }
 
-.nav__list .MuiSvgIcon-root{
+.nav__right .MuiSvgIcon-root{
     font-size: 40px;
     color : rgb(182, 29, 18);
     margin-right: 5px;
