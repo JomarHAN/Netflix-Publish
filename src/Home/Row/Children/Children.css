@@ -1,0 +1,20 @@
+.children{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.children::-webkit-scrollbar{
+    display: none;
+}
+
+.children img{
+    height: 200px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.children img:hover{
+    transform: scale(1.2);
+}

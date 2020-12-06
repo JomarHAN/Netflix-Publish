@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../features/genresSlice";
+import Children from "./Children/Children";
 import "./Row.css";
 
 function Row() {
@@ -9,7 +10,10 @@ function Row() {
   return (
     <div className="row">
       {genres.map((genre) => (
-        <h1>{genre.genreName}</h1>
+        <div className="row__content" key={genre.id}>
+          <h1>{genre.genreName}</h1>
+          <Children id={genre.id} />
+        </div>
       ))}
     </div>
   );
