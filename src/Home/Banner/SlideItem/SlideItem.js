@@ -6,7 +6,6 @@ import movieTrailer from "movie-trailer";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMovie, setMovie } from "../../../features/movieSlice";
 import { makeStyles, Modal } from "@material-ui/core";
-import YoutubePlay from "../../../YoutubePlay";
 
 const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -40,7 +39,7 @@ function SlideItem({ title, overview, backdrop, vote, id }) {
   const handlePlay = (e) => {
     setOpen(true);
     const movieName = e.target.id;
-    // console.log(movieName);
+
     movieTrailer(movieName)
       .then((res) => {
         const urlParams = new URLSearchParams(new URL(res).search);
@@ -71,7 +70,6 @@ function SlideItem({ title, overview, backdrop, vote, id }) {
           {movie && <Youtube videoId={movie} opts={opts} />}
         </div>
       </Modal>
-      {/* <YoutubePlay /> */}
       <div className="slideItem">
         <img src={img_url + backdrop} alt="" className="slideItem__backdrop" />
         <div className="slideItem__content">

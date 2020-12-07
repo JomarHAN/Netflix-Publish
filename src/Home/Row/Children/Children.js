@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Children.css";
 import axios from "../../../dataMovie/axios";
 import fetchMovie from "../../../dataMovie/request";
-import { IconButton } from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
-import { useDispatch } from "react-redux";
+import { IconButton, makeStyles, Modal } from "@material-ui/core";
+import { Delete, Favorite, PlayArrow } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
 import { removeGenre } from "../../../features/genresSlice";
+import movieTrailer from "movie-trailer";
+import Youtube from "react-youtube";
+import { selectMovie, setMovie } from "../../../features/movieSlice";
 
 const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -92,10 +95,35 @@ export const listGenres = [
   },
 ];
 
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: "absolute",
+    width: 700,
+    height: 500,
+    boxShadow: theme.shadows[5],
+  },
+}));
+
 function Children({ genreId }) {
+  const classes = useStyles();
+  const [modalStyle] = useState(getModalStyle);
   const [movies, setMovies] = useState();
   const [titles, setTitles] = useState();
   const genreDispatch = useDispatch();
+  const movieDispatch = useDispatch();
+  const movie = useSelector(selectMovie);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const result = listGenres.find(({ id }) => id === genreId);
@@ -113,8 +141,48 @@ function Children({ genreId }) {
     genreDispatch(removeGenre(genreId));
   };
 
+  const handlePlay = (e) => {
+    setOpen(true);
+
+    const movieId = e.target.id;
+
+    movieTrailer(movieId)
+      .then((res) => {
+        const paramUrl = new URLSearchParams(new URL(res).search);
+        const movieKey = paramUrl.get("v");
+        movieDispatch(setMovie(movieKey));
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    movieDispatch(setMovie(null));
+  };
+
+  const opts = {
+    width: 700,
+    height: 500,
+    playerVars: {
+      autoplay: 1,
+    },
+  };
+
   return (
     <>
+      <Modal open={open} onClose={handleClose}>
+        <div style={modalStyle} className={classes.paper}>
+          {movie ? (
+            <Youtube videoId={movie} opts={opts} />
+          ) : (
+            <div className="noFound">
+              <h1>
+                Opps!! Sorry... <br /> No found this video in Youtube...
+              </h1>
+            </div>
+          )}
+        </div>
+      </Modal>
       <div className="children__title">
         <h1>{titles}</h1>
         <IconButton onClick={handleRemove}>
@@ -123,7 +191,17 @@ function Children({ genreId }) {
       </div>
       <div className="children">
         {movies?.map((movie) => (
-          <img key={movie.id} src={img_url + movie.poster_path} alt="" />
+          <div className="children__item">
+            <img key={movie.id} src={img_url + movie.poster_path} alt="" />
+            <div className="children__button">
+              <div className="children__button-play">
+                <PlayArrow id={movie.title} onClick={handlePlay} />
+              </div>
+              <div className="children__button-favorite">
+                <Favorite />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </>
