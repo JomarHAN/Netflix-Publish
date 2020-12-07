@@ -98,3 +98,11 @@
     align-items: center;
     text-align: center;
 }
+
+.popup{
+    display: none;
+}
+
+.show .popup{
+    display: block;
+}

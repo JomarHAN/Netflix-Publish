@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Nav from "../Home/Nav/Nav";
 import "./Favourite.css";
 
 function Favourite() {
@@ -6,6 +7,7 @@ function Favourite() {
 
   return (
     <div className="favourite">
+      <Nav />
       <h1>I am the Favourite Page</h1>
     </div>
   );

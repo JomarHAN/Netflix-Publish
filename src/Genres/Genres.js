@@ -9,9 +9,9 @@ import {
   withStyles,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { listGenres } from "../Home/Row/Children/Children";
-import { selectGenres, setGenres } from "../features/genresSlice";
+import { setGenres } from "../features/genresSlice";
 import "./Genres.css";
 
 const BootstrapInput = withStyles((theme) => ({
@@ -58,7 +58,6 @@ function Genres() {
   const classes = useStyles();
   const [input, setInput] = useState("");
   const genresDispatch = useDispatch();
-  const genres = useSelector(selectGenres);
 
   const handleGenres = () => {
     genresDispatch(setGenres(input));

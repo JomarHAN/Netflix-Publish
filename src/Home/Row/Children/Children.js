@@ -9,6 +9,9 @@ import { removeGenre } from "../../../features/genresSlice";
 import movieTrailer from "movie-trailer";
 import Youtube from "react-youtube";
 import { selectMovie, setMovie } from "../../../features/movieSlice";
+import { selectUser } from "../../../features/userSlice";
+import db from "../../../firebase";
+import { selectFavorId, setFavorId } from "../../../features/favorSlice";
 
 const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -124,6 +127,9 @@ function Children({ genreId }) {
   const movieDispatch = useDispatch();
   const movie = useSelector(selectMovie);
   const [open, setOpen] = useState(false);
+  const user = useSelector(selectUser);
+  const favorDispatch = useDispatch();
+  const favorId = useSelector(selectFavorId);
 
   useEffect(() => {
     const result = listGenres.find(({ id }) => id === genreId);
@@ -168,6 +174,27 @@ function Children({ genreId }) {
     },
   };
 
+  const addFavor = (e) => {
+    favorDispatch(setFavorId(e.target.id));
+    db.collection("dbfavorite")
+      .doc(user.uid)
+      .collection("dbmovie")
+      .add({ id: e.target.id });
+  };
+
+  useEffect(() => {
+    if (user) {
+      if (favorId) {
+        db.collection("dbfavorite")
+          .doc(user.id)
+          .collection("dbmovie")
+          .onSnapshot((snapshot) =>
+            snapshot.docs.map((doc) => console.log(doc))
+          );
+      }
+    }
+  }, [user, favorId]);
+
   return (
     <>
       <Modal open={open} onClose={handleClose}>
@@ -191,14 +218,15 @@ function Children({ genreId }) {
       </div>
       <div className="children">
         {movies?.map((movie) => (
-          <div className="children__item">
-            <img key={movie.id} src={img_url + movie.poster_path} alt="" />
+          <div className={`children__item`} key={movie.id}>
+            <h1 className="popup">{movie.title}</h1>
+            <img src={img_url + movie.poster_path} alt="" />
             <div className="children__button">
               <div className="children__button-play">
                 <PlayArrow id={movie.title} onClick={handlePlay} />
               </div>
               <div className="children__button-favorite">
-                <Favorite />
+                <Favorite id={movie.id} onClick={addFavor} />
               </div>
             </div>
           </div>

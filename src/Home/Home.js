@@ -5,9 +5,10 @@ import Banner from "./Banner/Banner";
 import Row from "./Row/Row";
 import Genres from "../Genres/Genres";
 
-function Body() {
+function Home() {
   return (
     <div className="home">
+      <Nav />
       <Banner />
       <div className="home__child">
         <Genres />
@@ -17,4 +18,4 @@ function Body() {
   );
 }
 
-export default Body;
+export default Home;

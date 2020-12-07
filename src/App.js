@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Home from "./Home/Home";
-import { login, logout } from "./features/userSlice";
+import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
 import Login from "./Login/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Nav from "./Home/Nav/Nav";
 import Favourite from "./Favourite/Favourite";
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -35,19 +35,20 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Switch>
-          <Route path="/favourite">
-            <Nav />
-            <Favourite />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/">
-            <Nav />
-            <Home />
-          </Route>
-        </Switch>
+        {user ? (
+          <>
+            <Switch>
+              <Route path="/favourite">
+                <Favourite />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </>
+        ) : (
+          <Login />
+        )}
       </div>
     </Router>
   );

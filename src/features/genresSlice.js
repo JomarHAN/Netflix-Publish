@@ -7,7 +7,6 @@ export const genresSlice = createSlice({
   },
   reducers: {
     setGenres: (state, action) => {
-
       const newArray = [...state.genres]
       if (newArray.indexOf(action.payload) === -1) {
         newArray.splice(0, 0, action.payload)
