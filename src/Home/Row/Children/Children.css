@@ -2,6 +2,10 @@
     display: flex;
     width: 100%;
     overflow-x: scroll;
+    border: 1px solid rgb(119, 118, 118);
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .children::-webkit-scrollbar{
@@ -10,11 +14,28 @@
 
 .children img{
     height: 200px;
-    margin-left: 15px;
+    margin-right: 20px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
 
 .children img:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
+}
+
+.MuiIconButton-root{
+    font-size: 35px!important;
+    color: gray!important;
+    transition: 0.2s ease-in-out;
+}
+
+.MuiIconButton-root:hover{
+    color: whitesmoke!important;
+}
+
+.children__title{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

@@ -10,9 +10,8 @@ function Row() {
   return (
     <div className="row">
       {genres.map((genre) => (
-        <div className="row__content" key={genre.id}>
-          <h1>{genre.genreName}</h1>
-          <Children id={genre.id} />
+        <div className="row__content" key={genre}>
+          <Children genreId={genre} />
         </div>
       ))}
     </div>

@@ -7,3 +7,4 @@ const fetchMovie = {
 }
 
 export default fetchMovie
+

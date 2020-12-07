@@ -9,8 +9,9 @@ import {
   withStyles,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setGenres } from "../features/genresSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { listGenres } from "../Home/Row/Children/Children";
+import { selectGenres, setGenres } from "../features/genresSlice";
 import "./Genres.css";
 
 const BootstrapInput = withStyles((theme) => ({
@@ -53,100 +54,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const listGenres = [
-  {
-    id: false,
-    name: "--Select Genres--",
-  },
-  {
-    id: 28,
-    name: "Action",
-  },
-  {
-    id: 12,
-    name: "Adventure",
-  },
-  {
-    id: 16,
-    name: "Animation",
-  },
-  {
-    id: 35,
-    name: "Comedy",
-  },
-  {
-    id: 80,
-    name: "Crime",
-  },
-  {
-    id: 99,
-    name: "Documentary",
-  },
-  {
-    id: 18,
-    name: "Drama",
-  },
-  {
-    id: 10751,
-    name: "Family",
-  },
-  {
-    id: 14,
-    name: "Fantasy",
-  },
-  {
-    id: 36,
-    name: "History",
-  },
-  {
-    id: 27,
-    name: "Horror",
-  },
-  {
-    id: 10402,
-    name: "Music",
-  },
-  {
-    id: 9648,
-    name: "Mystery",
-  },
-  {
-    id: 10749,
-    name: "Romance",
-  },
-  {
-    id: 878,
-    name: "Science Fiction",
-  },
-  {
-    id: 10770,
-    name: "TV Movie",
-  },
-  {
-    id: 53,
-    name: "Thriller",
-  },
-  {
-    id: 10752,
-    name: "War",
-  },
-  {
-    id: 37,
-    name: "Western",
-  },
-];
-
 function Genres() {
   const classes = useStyles();
   const [input, setInput] = useState("");
   const genresDispatch = useDispatch();
+  const genres = useSelector(selectGenres);
 
   const handleGenres = () => {
-    listGenres.map((item) => {
-      if (item.id === input) {
-        genresDispatch(setGenres({ id: input, genreName: item.name }));
-      }
-    });
+    genresDispatch(setGenres(input));
   };
 
   return (

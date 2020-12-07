@@ -7,12 +7,23 @@ export const genresSlice = createSlice({
   },
   reducers: {
     setGenres: (state, action) => {
+
       const newArray = [...state.genres]
-      if (newArray.indexOf(action.payload.id) === -1) {
+      if (newArray.indexOf(action.payload) === -1) {
         newArray.splice(0, 0, action.payload)
       } else {
-        alert('Already Added')
+        alert('Already Added It')
       }
+      return {
+        ...state,
+        genres: newArray
+      }
+    },
+
+    removeGenre: (state, action) => {
+      const newArray = [...state.genres]
+      const index = newArray.indexOf(action.payload)
+      newArray.splice(index, 1)
       return {
         ...state,
         genres: newArray
@@ -21,7 +32,7 @@ export const genresSlice = createSlice({
   },
 });
 
-export const { setGenres } = genresSlice.actions;
+export const { setGenres, removeGenre } = genresSlice.actions;
 
 export const selectGenres = state => state.genres.genres;
 
