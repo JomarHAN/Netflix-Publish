@@ -1,0 +1,82 @@
+.childfavorite{
+    width: 100%;
+}
+
+.childfavorite__content{
+    height: 300px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.childfavorite__left{
+    height: 100%;
+    margin-right: 20px;
+    position: relative;
+}
+
+.childfavorite__play{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.774);
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.childfavorite__play .MuiSvgIcon-root{
+    font-size: 70px;
+}
+
+.childfavorite__left:hover .childfavorite__play{
+    opacity: 1;
+}
+
+.childfavorite__left img{
+    object-fit: contain;
+    height: 100%;
+}
+
+.childfavorite__rightTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.childfavorite__del{
+    opacity: 0.5;
+    transition: 0.2s ease-in-out;
+}
+
+.childfavorite__del:hover{
+    opacity: 1;
+}
+
+.childfavorite__rightTitle h3{
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.childfavorite__right > *{
+    margin-bottom: 5px;
+}
+
+.childfavorite__right p{
+    font-style: italic;
+    font-weight: 600;
+}
+
+.childfavorite__right h4{
+    color: lightgray;
+    font-size: 20px;
+}
+
+hr{
+    margin-bottom: 40px;
+    border: 0.5px solid lightgray;
+}

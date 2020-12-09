@@ -12,74 +12,7 @@
     display: none;
 }
 
-.children__item{
-    position: relative;
-    height: 200px;
-    width: 150px;
-    margin-right: 20px;
-}
 
-.children__item img{
-    position: absolute;
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-}
-
-.children__button{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.568);
-    z-index: 2;
-    opacity: 0;
-    transition: 0.2s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.children__button > div{
-    padding: 5px;
-    margin: 10px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    justify-content: center;
-}
-
-.children__button-play{
-    background-color: rgb(15, 136, 15);
-}
-
-.children__button-favorite{
-    background-color: indianred;
-}
-
-.children__item:hover img
-{
-    transform: scale(1.1);
-}
-
-.children__item:hover .children__button{
-    transform: scale(1.1);
-    opacity: 1;
-}
-
-.MuiIconButton-root{
-    font-size: 35px!important;
-    color: gray!important;
-    transition: 0.2s ease-in-out;
-}
-
-.MuiIconButton-root:hover{
-    color: whitesmoke!important;
-}
 
 .children__title{
     margin-bottom: 10px;
@@ -99,10 +32,3 @@
     text-align: center;
 }
 
-.popup{
-    display: none;
-}
-
-.show .popup{
-    display: block;
-}

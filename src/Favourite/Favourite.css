@@ -1,0 +1,18 @@
+.favorite{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.favorite__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80%;
+}
+
+.favorite__content h1{
+    font-size: 50px;
+    margin-bottom: 50px;
+}

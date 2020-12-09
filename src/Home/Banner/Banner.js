@@ -12,14 +12,14 @@ function Banner() {
   const dispatch = useDispatch();
   const banners = useSelector(selectBanners);
 
+  const fetch = async () => {
+    await axios.get(fetchMovie.banner).then((res) => {
+      if (res) {
+        dispatch(setBanners(res.data.results));
+      }
+    });
+  };
   useEffect(() => {
-    const fetch = () => {
-      axios.get(fetchMovie.banner).then((res) => {
-        if (res) {
-          dispatch(setBanners(res.data.results));
-        }
-      });
-    };
     fetch();
   }, []);
 

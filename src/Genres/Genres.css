@@ -8,32 +8,25 @@
     color: white;
     background-color: rgb(95, 155, 4);
     font-weight: 800;
-    margin-top: 24px!important;
     height: 45px;
 }
 
 .genres .MuiFormControl-root{
     width: 200px;
-}
-
-.MuiFormLabel-root{
-    color: rgb(192, 85, 85)!important;
-    font-weight: 800!important;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 15px;
 }
 
 .MuiInputBase-input{
     color: white!important;
 }
 
-.MuiSelect-root{
-    background-color: transparent!important;
+.MuiSvgIcon-root{
+    color: whitesmoke!important;
 }
 
-.MuiInputLabel-formControl{
-    top: 10px!important;
-    left: 10px!important;
-}
-
-.MuiInputLabel-shrink{
-    transform: translate(0, -2px) scale(0.75)!important;
+.disabled{
+    color: rgb(37, 37, 37)!important;
 }

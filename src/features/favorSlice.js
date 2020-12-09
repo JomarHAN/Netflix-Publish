@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 export const favorSlice = createSlice({
   name: 'favor',
   initialState: {
-    favor: [],
+    favors: [],
     favorId: null
   },
   reducers: {
     addFavor: (state, action) => {
-      const newList = [...state.favor]
+      const newList = [...state.favors]
       if (
         newList.indexOf(action.payload) === -1
       ) {
@@ -18,8 +18,20 @@ export const favorSlice = createSlice({
       }
       return {
         ...state,
-        favor: newList
+        favors: newList
       }
+    },
+    delFavor: (state, action) => {
+      const otherArr = [...state.favors]
+      const index = otherArr.indexOf(action.payload)
+      otherArr.splice(index, 1)
+      return {
+        ...state,
+        favors: otherArr
+      }
+    },
+    uploadFavor: (state, action) => {
+      state.favors = action.payload
     },
     setFavorId: (state, action) => {
       state.favorId = action.payload
@@ -27,9 +39,9 @@ export const favorSlice = createSlice({
   },
 });
 
-export const { addFavor, setFavorId } = favorSlice.actions;
+export const { addFavor, setFavorId, delFavor, uploadFavor } = favorSlice.actions;
 
-export const selectFavor = state => state.favor.favor;
+export const selectFavor = state => state.favor.favors;
 export const selectFavorId = state => state.favor.favorId;
 
 export default favorSlice.reducer;

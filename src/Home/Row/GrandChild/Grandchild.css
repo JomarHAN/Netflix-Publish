@@ -1,0 +1,74 @@
+.grandchild{
+
+    height: 200px;
+    width: 150px;
+}
+
+
+.grandchild__item{
+    position: relative;
+    margin-right: 20px;
+    height: 100%;
+}
+
+.grandchild__item img{
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.grandchild__button{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.568);
+    z-index: 2;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grandchild__button > div{
+    padding: 5px;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.grandchild__button-play{
+    background-color: rgb(15, 136, 15);
+}
+
+.grandchild__button-favorite{
+    background-color: indianred;
+}
+
+.grandchild__item:hover img
+{
+    transform: scale(1.1);
+}
+
+.grandchild__item:hover .grandchild__button{
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.MuiIconButton-root{
+    font-size: 35px!important;
+    color: gray!important;
+    transition: 0.2s ease-in-out;
+}
+
+.MuiIconButton-root:hover{
+    color: whitesmoke!important;
+}
