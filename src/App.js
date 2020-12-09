@@ -32,6 +32,8 @@ function App() {
     };
   }, []);
 
+  document.title = "Netflix Clone Redux"
+
   return (
     <Router>
       <div className="app">
