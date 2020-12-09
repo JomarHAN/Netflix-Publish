@@ -9,6 +9,8 @@ import Youtube from "react-youtube";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMovie, setMovie } from "../../features/movieSlice";
 import { delFavor } from "../../features/favorSlice";
+import db from "../../firebase";
+import { selectUser } from "../../features/userSlice";
 
 const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -40,6 +42,7 @@ function ChildFavorite({ movieId }) {
   const classes = useStyles();
   const movie = useSelector(selectMovie);
   const favorDispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   const fetchMovieInfo = async () => {
     await axios
@@ -79,6 +82,16 @@ function ChildFavorite({ movieId }) {
 
   const delMovie = () => {
     favorDispatch(delFavor(movieId));
+    if (user) {
+      const findEle = db
+        .collection("dbfavorite")
+        .doc(user.uid)
+        .collection("dbmovie")
+        .where("idmovie", "==", movieId);
+      findEle
+        .get()
+        .then((snapshot) => snapshot.docs.map((doc) => doc.ref.delete()));
+    }
   };
 
   return (

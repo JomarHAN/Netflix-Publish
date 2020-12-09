@@ -10,9 +10,15 @@ function Login() {
   const history = useHistory();
 
   const signIn = () => {
-    auth.signInWithEmailAndPassword(email, password).then(() => {
-      history.push("/");
-    });
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        history.push("/");
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => alert(err.message));
   };
 
   const signUp = () => {
@@ -21,8 +27,10 @@ function Login() {
       .then(() => {
         history.push("/");
       })
-
-      .catch((err) => console.log(err.message));
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => alert(err.message));
   };
 
   const signInGoogle = () => {
@@ -30,6 +38,9 @@ function Login() {
       .signInWithPopup(provider)
       .then(() => {
         history.push("/");
+      })
+      .then(() => {
+        window.location.reload();
       })
 
       .catch((err) => console.log(err.message));

@@ -6,6 +6,13 @@ import movieTrailer from "movie-trailer";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMovie, setMovie } from "../../../features/movieSlice";
 import { makeStyles, Modal } from "@material-ui/core";
+import {
+  addFavor,
+  selectFavor,
+  setFavorId,
+} from "../../../features/favorSlice";
+import db from "../../../firebase";
+import { selectUser } from "../../../features/userSlice";
 
 const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -35,6 +42,9 @@ function SlideItem({ title, overview, backdrop, vote, id }) {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
+  const favorDispatch = useDispatch();
+  const favors = useSelector(selectFavor);
+  const user = useSelector(selectUser);
 
   const handlePlay = (e) => {
     setOpen(true);
@@ -63,6 +73,19 @@ function SlideItem({ title, overview, backdrop, vote, id }) {
     movieDispatch(setMovie(null));
   };
 
+  const sendFavor = () => {
+    favorDispatch(setFavorId(id));
+    if (favors.indexOf(id) === -1) {
+      favorDispatch(addFavor(id));
+      db.collection("dbfavorite")
+        .doc(user.uid)
+        .collection("dbmovie")
+        .add({ idmovie: id });
+    } else {
+      alert("It has already added!");
+    }
+  };
+
   return (
     <>
       <Modal open={open} onClose={handleClose}>
@@ -82,7 +105,7 @@ function SlideItem({ title, overview, backdrop, vote, id }) {
               <PlayArrow id={title} onClick={handlePlay} />
             </div>
             <div className="slideItem__btnAdd">
-              <Favorite />
+              <Favorite onClick={sendFavor} />
             </div>
           </div>
           <p className="slideItem__overview">{overview}</p>

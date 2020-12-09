@@ -4,10 +4,15 @@ import "./Grandchild.css";
 import movieTrailer from "movie-trailer";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../features/userSlice";
-import { setFavorId, addFavor } from "../../../features/favorSlice";
+import {
+  setFavorId,
+  addFavor,
+  selectFavor,
+} from "../../../features/favorSlice";
 import { selectMovie, setMovie } from "../../../features/movieSlice";
 import { makeStyles, Modal } from "@material-ui/core";
 import Youtube from "react-youtube";
+import db from "../../../firebase";
 
 const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -39,6 +44,7 @@ function Grandchild({ data }) {
   const [modalStyle] = useState(getModalStyle);
   const user = useSelector(selectUser);
   const favorDispatch = useDispatch();
+  const favors = useSelector(selectFavor);
 
   const handlePlay = (e) => {
     setOpen(true);
@@ -69,7 +75,15 @@ function Grandchild({ data }) {
 
   const sendFavor = () => {
     favorDispatch(setFavorId(data.id));
-    favorDispatch(addFavor(data.id));
+    if (favors.indexOf(data.id) === -1) {
+      favorDispatch(addFavor(data.id));
+      db.collection("dbfavorite")
+        .doc(user.uid)
+        .collection("dbmovie")
+        .add({ idmovie: data.id });
+    } else {
+      alert("It has already added!");
+    }
   };
 
   return (
