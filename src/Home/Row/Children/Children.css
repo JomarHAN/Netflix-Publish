@@ -8,9 +8,6 @@
     box-sizing: border-box;
 }
 
-.children::-webkit-scrollbar{
-    display: none;
-}
 
 
 
