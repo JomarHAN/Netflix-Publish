@@ -21,6 +21,7 @@
 
 .MuiInputBase-input{
     color: white!important;
+    background-color: rgba(0, 0, 0, 0.938)!important;
 }
 
 .MuiSvgIcon-root{
