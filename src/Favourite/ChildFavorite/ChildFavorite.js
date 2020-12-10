@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     height: 500,
     boxShadow: theme.shadows[5],
     "@media (max-width: 768px)": {
-      width: 600,
-      height: 400,
+      width: 500,
+      height: 300,
     },
     "@media (max-width: 425px)": {
       width: 400,
