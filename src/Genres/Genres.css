@@ -21,7 +21,6 @@
 
 .MuiInputBase-input{
     color: white!important;
-    background-color: rgba(0, 0, 0, 0.938)!important;
 }
 
 .MuiSvgIcon-root{
@@ -30,4 +29,10 @@
 
 .disabled{
     color: rgb(37, 37, 37)!important;
+}
+
+.MuiNativeSelect-select:not([multiple]) option, 
+.MuiNativeSelect-select:not([multiple]) optgroup{
+    background-color: rgba(0, 0, 0, 0.938)!important;
+    
 }
