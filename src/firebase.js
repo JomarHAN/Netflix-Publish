@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 const firebaseApp = firebase.initializeApp({
-    apiKey: "API_KEY",
+    apiKey: "AIzaSyBzCaPgvBkM_n-17s54V2E8X8WKdH9_R20",
     authDomain: "netflix-publish.firebaseapp.com",
     databaseURL: "https://netflix-publish.firebaseio.com",
     projectId: "netflix-publish",

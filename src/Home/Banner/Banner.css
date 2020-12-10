@@ -67,3 +67,16 @@
 .control-arrow{
     z-index: 5!important;
 }
+
+
+@media only screen and (max-width: 768px){
+    .banner{
+        max-height: 500px;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .banner{
+        height: 350px;
+    }
+}

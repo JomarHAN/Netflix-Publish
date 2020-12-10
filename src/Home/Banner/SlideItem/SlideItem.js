@@ -33,6 +33,14 @@ const useStyles = makeStyles((theme) => ({
     width: 700,
     height: 500,
     boxShadow: theme.shadows[5],
+    "@media (max-width: 768px)": {
+      width: 600,
+      height: 400,
+    },
+    "@media (max-width: 425px)": {
+      width: 400,
+      height: 300,
+    },
   },
 }));
 
@@ -90,7 +98,7 @@ function SlideItem({ title, overview, backdrop, vote, id }) {
     <>
       <Modal open={open} onClose={handleClose}>
         <div style={modalStyle} className={classes.paper}>
-          {movie && <Youtube videoId={movie} opts={opts} />}
+          {movie && <Youtube className="youtube" videoId={movie} opts={opts} />}
         </div>
       </Modal>
       <div className="slideItem">

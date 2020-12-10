@@ -16,3 +16,17 @@
     font-size: 50px;
     margin-bottom: 50px;
 }
+
+@media only screen and (max-width: 768px){
+    .favorite__content h1{
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .favorite__content h1{
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+}

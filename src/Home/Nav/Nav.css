@@ -61,3 +61,21 @@
 .nav__right a{
     text-decoration-line: none!important;
 }
+
+@media only screen and (max-width: 768px){
+    .nav__logo{
+        width: 100px;
+    }
+
+    .nav__avatar{
+        width: 40px;
+    }
+
+    .nav__right .MuiSvgIcon-root{
+        font-size: 30px;
+    }
+
+    .nav__right p{
+        font-size: 20px;
+    }
+}

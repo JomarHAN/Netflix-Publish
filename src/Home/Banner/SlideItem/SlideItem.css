@@ -51,3 +51,27 @@
 .slideItem__btnAdd{
     background-color: indianred;
 }
+
+@media only screen and (max-width: 768px){
+    .slideItem__content{
+        top: 45%;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .slideItem__overview{
+        display: none
+    }
+
+    .slideItem__content{
+        top: 50%;
+    }
+
+    .slideItem__content h2{
+        font-size: 20px;
+    }
+
+    .slideItem p{
+        font-size: 15px;
+    }
+}

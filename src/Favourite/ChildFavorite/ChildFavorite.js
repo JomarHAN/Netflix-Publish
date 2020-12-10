@@ -31,6 +31,14 @@ const useStyles = makeStyles((theme) => ({
     width: 700,
     height: 500,
     boxShadow: theme.shadows[5],
+    "@media (max-width: 768px)": {
+      width: 600,
+      height: 400,
+    },
+    "@media (max-width: 425px)": {
+      width: 400,
+      height: 300,
+    },
   },
 }));
 
@@ -99,7 +107,7 @@ function ChildFavorite({ movieId }) {
       <Modal open={open} onClose={handleClose}>
         <div style={modalStyle} className={classes.paper}>
           {movie ? (
-            <Youtube videoId={movie} opts={opts} />
+            <Youtube className="youtube" videoId={movie} opts={opts} />
           ) : (
             <div className="noFound">
               <h1>
